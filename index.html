@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AllCoach - Persönliches Fußball-Leistungszentrum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0b1220" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- SIDEBAR NAVIGATION (Desktop) -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">AC</div>
+        <div>
+          <div class="brand-name">AllCoach</div>
+          <div class="brand-subtitle">Pitchside Pro</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="nav-item active" data-page="today" aria-label="Heute">
+          <span class="nav-icon">◔</span>
+          <span>Heute</span>
+        </button>
+        <button class="nav-item" data-page="training" aria-label="Training">
+          <span class="nav-icon">◫</span>
+          <span>Training</span>
+        </button>
+        <button class="nav-item" data-page="analysis" aria-label="Analyse">
+          <span class="nav-icon">◌</span>
+          <span>Analyse</span>
+        </button>
+        <button class="nav-item" data-page="coach" aria-label="Coach">
+          <span class="nav-icon">✦</span>
+          <span>Coach</span>
+        </button>
+        <button class="nav-item" data-page="development" aria-label="Entwicklung">
+          <span class="nav-icon">△</span>
+          <span>Entwicklung</span>
+        </button>
+        <button class="nav-item" data-page="profile" aria-label="Profil">
+          <span class="nav-icon">☰</span>
+          <span>Profil</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-card">
+        <div class="tiny-label">Aktueller Fokus</div>
+        <h4 id="sidebarGoal">Flanken aus der Bewegung</h4>
+        <p id="sidebarGoalSubtitle">Technik + Ausgangsposition</p>
+        <div class="mini-progress">
+          <span id="sidebarProgress" style="width: 68%"></span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-panel">
+      <!-- HEADER -->
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">Fußball-Performance</div>
+          <h1 id="pageTitle">Heute</h1>
+        </div>
+        <div class="header-actions">
+          <button class="secondary-btn small" id="reportBtn">Bericht erstellen</button>
+          <button class="primary-btn small" id="startTrainingBtn">Training starten</button>
+        </div>
+      </header>
+
+      <!-- PAGE: HEUTE -->
+      <section class="page visible" data-page="today">
+        <div class="hero-card">
+          <div>
+            <div class="eyebrow">Willkommen zurück</div>
+            <h2 id="playerGreeting">Hallo, Spieler</h2>
+            <p id="playerFocus">Dein Fokus heute: Verbesserung der Spielentscheidungen.</p>
+          </div>
+          <div class="date-box">
+            <span class="tiny-label">Heute</span>
+            <strong id="dateLabel">11.10.2026</strong>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Deine heutige Priorität</div>
+                <h3 id="priorityTitle">Flanken aus der Bewegung</h3>
+              </div>
+              <span class="badge success">Aktiv</span>
+            </div>
+            <p id="priorityDescription">Diese Priorität wurde aus deinen letzten Trainingsrückmeldungen bestimmt.</p>
+            <ul class="feature-list" id="priorityFeatures">
+              <li>Quelle: Trainingsrückmeldung</li>
+              <li>Empfehlung: 2 Serien mit Flanken</li>
+              <li>Nächste Aktion: Plan erstellen</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Tagesplan</div>
+                <h3>Heute</h3>
+              </div>
+              <span class="badge info" id="planBadge">3 Einträge</span>
+            </div>
+            <div class="timeline" id="todayTimeline">
+              <div class="timeline-item">
+                <span class="dot done"></span>
+                <div>
+                  <strong>Mannschaftstraining</strong>
+                  <small>18:30 – 20:00</small>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="dot active"></span>
+                <div>
+                  <strong>Individualtraining</strong>
+                  <small>20:15 – 20:45</small>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="dot pending"></span>
+                <div>
+                  <strong>Rückmeldung eintragen</strong>
+                  <small>Nach der Einheit</small>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid-3">
+          <article class="card compact">
+            <div class="tiny-label">Letzte Erkenntnis</div>
+            <h4 id="insightTitle">Mehr Stabilität nötig</h4>
+            <p id="insightText">Beobachtung aus letztem Training.</p>
+          </article>
+
+          <article class="card compact">
+            <div class="tiny-label">Entwicklungsübersicht</div>
+            <h4>Leistungsbereiche</h4>
+            <div class="mini-bars" id="developmentBars">
+              <div>
+                <label>Technik</label>
+                <div class="mini-progress"><span style="width: 76%"></span></div>
+              </div>
+              <div>
+                <label>Defensiv</label>
+                <div class="mini-progress"><span style="width: 58%"></span></div>
+              </div>
+              <div>
+                <label>Offensiv</label>
+                <div class="mini-progress"><span style="width: 82%"></span></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="card compact">
+            <div class="tiny-label">Coach</div>
+            <h4>Direkt fragen</h4>
+            <div class="quick-questions">
+              <button class="quick-btn" data-action="plan">Training planen</button>
+              <button class="quick-btn" data-action="analyze">Spiel analysieren</button>
+              <button class="quick-btn" data-action="tactic">Taktik erklären</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PAGE: TRAINING -->
+      <section class="page" data-page="training">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Training</div>
+            <h2>Einheiten & Planer</h2>
+          </div>
+          <button class="primary-btn" id="newPlanBtn">Neuen Plan erstellen</button>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Heutige Einheit</div>
+                <h3 id="todaySessionTitle">Technikblock</h3>
+              </div>
+              <span class="badge warning" id="todaySessionBadge">Geplant</span>
+            </div>
+            <ul class="feature-list" id="todaySessionFeatures">
+              <li>Ziel: Ballzirkulation unter Druck</li>
+              <li>Dauer: 35 Minuten</li>
+              <li>Ort: Trainingszentrum</li>
+              <li>Material: 6 Bälle, 4 Hütchen</li>
+            </ul>
+            <button class="primary-btn full" id="viewSessionBtn">Plan anzeigen</button>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Planergebnis</div>
+                <h3 id="planTitle">Neuer Trainingsplan</h3>
+              </div>
+              <span class="badge success" id="planBadge2">Vorschlag</span>
+            </div>
+            <ol class="ordered-list" id="planExercises">
+              <li>Warm-up: 4 Min. Ballkontakte</li>
+              <li>Übung 1: 2 x 6 Flanken</li>
+              <li>Übung 2: 3 x 5 Flanken im Lauf</li>
+              <li>Übung 3: 1v1 mit Nachspiel</li>
+            </ol>
+            <div class="inline-actions">
+              <button class="secondary-btn" id="editPlanBtn">Bearbeiten</button>
+              <button class="primary-btn" id="savePlanBtn">Speichern</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="tiny-label">Übungsbibliothek</div>
+              <h3>Verfügbare Übungen</h3>
+            </div>
+          </div>
+          <div class="exercise-grid" id="exerciseLibrary">
+            <div class="exercise-item">
+              <strong>Ball aus der Bewegung</strong>
+              <small>Technik / Flanke / 15 min</small>
+            </div>
+            <div class="exercise-item">
+              <strong>Wechselspiel im 3er-Block</strong>
+              <small>Tempo / Positionsspiel / 20 min</small>
+            </div>
+            <div class="exercise-item">
+              <strong>1v1 – Außenverteidiger</strong>
+              <small>Defensiv / Technik / 12 min</small>
+            </div>
+            <div class="exercise-item">
+              <strong>Pass + Abschluss aus Lauf</strong>
+              <small>Offensiv / Chipp / 18 min</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="tiny-label">Trainingshistorie</div>
+              <h3>Letzte Einheiten</h3>
+            </div>
+          </div>
+          <div id="trainingHistory">
+            <p class="empty-state">Keine Trainingshistorie vorhanden. Starten Sie ein Training, um Einträge zu erstellen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: ANALYSE -->
+      <section class="page" data-page="analysis">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Analyse</div>
+            <h2>Berichte & Auswertungen</h2>
+          </div>
+          <button class="primary-btn" id="newReportBtn">Spielbericht anlegen</button>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Letzter Spielbericht</div>
+                <h3 id="lastMatchTitle">Noch kein Spiel eingegeben</h3>
+              </div>
+              <span class="badge info" id="reportBadge">Selbstbericht</span>
+            </div>
+            <p id="lastMatchDescription">Erstelle deinen ersten Spielbericht, um Analysen zu erhalten.</p>
+            <ul class="feature-list" id="lastMatchFeatures">
+              <li>Position: -</li>
+              <li>Minuten: -</li>
+              <li>Beobachtung: -</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Entwicklungsanalyse</div>
+                <h3 id="progressTitle">Daten erforderlich</h3>
+              </div>
+              <span class="badge warning" id="progressBadge">Unvollständig</span>
+            </div>
+            <div class="mini-bars" id="progressBars">
+              <div>
+                <label>Ballkontakt</label>
+                <div class="mini-progress"><span style="width: 0%"></span></div>
+              </div>
+              <div>
+                <label>Flanke</label>
+                <div class="mini-progress"><span style="width: 0%"></span></div>
+              </div>
+              <div>
+                <label>Entscheidung</label>
+                <div class="mini-progress"><span style="width: 0%"></span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="tiny-label">Videoanalyse</div>
+              <h3>Verarbeitung</h3>
+            </div>
+          </div>
+          <div class="status-message">
+            <strong>Videoanalyse nicht aktiviert</strong>
+            <p>Videoverarbeitung wird in einer zukünftigen Version unterstützt. Du kannst bereits Spielberichte und Datenanalysen nutzen.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: COACH -->
+      <section class="page" data-page="coach">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Coach</div>
+            <h2>KI-Assistent</h2>
+          </div>
+        </div>
+
+        <div class="coach-layout">
+          <div class="card coach-panel">
+            <div class="conversation" id="conversation">
+              <div class="message assistant">
+                <div class="message-meta">Coach</div>
+                <p>Willkommen! Ich bin dein persönlicher AllCoach. Ich unterstütze dich bei Training, Analyse und Entwicklungsplanung. Was möchtest du heute erreichen?</p>
+              </div>
+            </div>
+
+            <form id="coachForm" class="coach-form">
+              <input 
+                type="text" 
+                id="coachInput" 
+                placeholder="Frage oder Auftrag an den Coach..." 
+                autocomplete="off"
+              />
+              <button class="primary-btn" type="submit">Senden</button>
+            </form>
+          </div>
+
+          <div class="card coach-side">
+            <div class="tiny-label">Arbeitsmodus</div>
+            <h3>Fokus wählen</h3>
+            <div class="mode-options">
+              <label>
+                <input type="radio" name="mode" value="training" checked />
+                🏋️ Training
+              </label>
+              <label>
+                <input type="radio" name="mode" value="analysis" />
+                📊 Analyse
+              </label>
+              <label>
+                <input type="radio" name="mode" value="development" />
+                📈 Entwicklung
+              </label>
+            </div>
+
+            <div class="mini-card">
+              <strong>Verfügbare Daten</strong>
+              <ul class="feature-list">
+                <li id="dataProfile">✓ Profil</li>
+                <li id="dataHistory">✓ Trainingshistorie</li>
+                <li id="dataMatches">✗ Spiele</li>
+                <li id="dataGoals">✓ Entwicklungsziele</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: ENTWICKLUNG -->
+      <section class="page" data-page="development">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Entwicklung</div>
+            <h2>Profil & Ziele</h2>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Spielerprofil</div>
+                <h3>Position & Ziele</h3>
+              </div>
+            </div>
+            <ul class="feature-list" id="profileFeatures">
+              <li>Position: Außenverteidiger</li>
+              <li>Stärken: Tempo, 1v1, Zuspiel</li>
+              <li>Entwicklung: Spielentscheidungen verbessern</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <div>
+                <div class="tiny-label">Entwicklungsziele</div>
+                <h3>Aktive Prioritäten</h3>
+              </div>
+              <span class="badge success" id="goalsCount">3 aktiv</span>
+            </div>
+            <ol class="ordered-list" id="goalsList">
+              <li>Weniger Ballverluste in der eigenen Hälfte</li>
+              <li>Mehr Treffer mit Flanken in den Lauf</li>
+              <li>Stabilere erste Berührung in engen Situationen</li>
+            </ol>
+          </article>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <div class="tiny-label">Fähigkeitsprofil</div>
+              <h3>Leistungsbereiche im Detail</h3>
+            </div>
+          </div>
+          <div class="skills-grid" id="skillsGrid">
+            <div class="skill-card">
+              <h4>Technik</h4>
+              <div class="skill-meter"><span style="width: 76%"></span></div>
+              <small>Ballzirkulation, Passen, Flanke</small>
+            </div>
+            <div class="skill-card">
+              <h4>Athletik</h4>
+              <div class="skill-meter"><span style="width: 68%"></span></div>
+              <small>Schnelligkeit, Ausdauer, Kraft</small>
+            </div>
+            <div class="skill-card">
+              <h4>Taktik</h4>
+              <div class="skill-meter"><span style="width: 62%"></span></div>
+              <small>Positionen, Entscheidungen, Raumeinteilung</small>
+            </div>
+            <div class="skill-card">
+              <h4>Defensiv</h4>
+              <div class="skill-meter"><span style="width: 58%"></span></div>
+              <small>Markierung, Positioning, 1v1</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE: PROFIL -->
+      <section class="page" data-page="profile">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Profil</div>
+            <h2>Persönliche Einstellungen</h2>
+          </div>
+          <button class="primary-btn" id="saveProfileBtn">Speichern</button>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-bottom: 18px;">Stammdaten</h3>
+          <form class="profile-form" id="profileForm">
+            <div class="form-grid">
+              <label>
+                <span>Name</span>
+                <input type="text" id="profileName" value="Spieler" />
+              </label>
+
+              <label>
+                <span>Position</span>
+                <input type="text" id="profilePosition" value="Außenverteidiger" />
+              </label>
+
+              <label>
+                <span>Bevorzugter Fuß</span>
+                <select id="profileFoot">
+                  <option>Rechts</option>
+                  <option>Links</option>
+                  <option>Beide</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Trainingsniveau</span>
+                <select id="profileLevel">
+                  <option>Juniorenbereich</option>
+                  <option>Seniorenbereich</option>
+                  <option>Professionell</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Trainingsort</span>
+                <input type="text" id="profileLocation" value="Sportzentrum" />
+              </label>
+
+              <label>
+                <span>Verfügbare Ausrüstung</span>
+                <input type="text" id="profileEquipment" value="Bälle, Hütchen, Markierungen" />
+              </label>
+
+              <label>
+                <span>Benachrichtigungen</span>
+                <select id="profileNotifications">
+                  <option>Alle relevanten</option>
+                  <option>Nur wichtige</option>
+                  <option>Aus</option>
+                </select>
+              </label>
+
+              <label>
+                <span>Sprache</span>
+                <select id="profileLanguage">
+                  <option>Deutsch</option>
+                  <option>English</option>
+                  <option>Español</option>
+                </select>
+              </label>
+            </div>
+
+            <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);">
+              <h4>Datenverwaltung</h4>
+              <div class="data-actions">
+                <button type="button" class="secondary-btn" id="exportDataBtn">Daten exportieren</button>
+                <button type="button" class="secondary-btn" id="clearDataBtn">Alle Daten löschen</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Über AllCoach</h3>
+          <p>
+            <strong>AllCoach v1.0</strong><br />
+            Persönliches Fußball-Leistungszentrum mit KI-Unterstützung<br />
+            <br />
+            <small>Design: Pitchside Pro | Datenbank: LocalStorage | KI: Orchestrated</small>
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- MOBILE NAVIGATION (Bottom Bar) -->
+  <nav class="mobile-nav" aria-label="Mobile Navigation">
+    <button class="mobile-item active" data-page="today">Heute</button>
+    <button class="mobile-item" data-page="training">Training</button>
+    <button class="mobile-item" data-page="analysis">Analyse</button>
+    <button class="mobile-item" data-page="coach">Coach</button>
+    <button class="mobile-item" data-page="development">Entwicklung</button>
+    <button class="mobile-item" data-page="profile">Profil</button>
+  </nav>
+
+  <!-- MODALS -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="trainingModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalCloseBtn">&times;</button>
+      <h2>Trainingsplan erstellen</h2>
+      <form id="trainingForm">
+        <label>
+          <span>Trainingstyp</span>
+          <select id="trainingType" required>
+            <option>Technik</option>
+            <option>Taktik</option>
+            <option>Athletik</option>
+            <option>Spezial</option>
+          </select>
+        </label>
+        <label>
+          <span>Ziel</span>
+          <input type="text" id="trainingGoal" placeholder="z.B. Flanken aus Bewegung" required />
+        </label>
+        <label>
+          <span>Dauer (Minuten)</span>
+          <input type="number" id="trainingDuration" value="35" required />
+        </label>
+        <label>
+          <span>Ort</span>
+          <input type="text" id="trainingLocation" placeholder="z.B. Trainingszentrum" />
+        </label>
+        <div class="modal-actions">
+          <button type="button" class="secondary-btn" id="modalCancelBtn">Abbrechen</button>
+          <button type="submit" class="primary-btn">Plan erstellen</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="data.js"></script>
+  <script src="router.js"></script>
+  <script src="coach-engine.js"></script>
+  <script src="training-engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
